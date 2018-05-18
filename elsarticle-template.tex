@@ -84,30 +84,36 @@
 \end{itemize}
 
 \section{Introduction (Frauke)}
-(Background single slide OPSD)
+\label{Introduction}
 
-\subsection{Need for quantitative power sector modeling}
+\subsection{Need for quantitative power sector modelling}
+Energy research as well as policy advice are based on quantitative computer models. The number of models, especially power sector models has increased significantly within the last years. With a rising amount of fluctuating renewable wind and solar power, temporal resolution has become increasingly important since only then flexibility of power plants can be taken into account. Studies based on power sector models include price i.a. forecasts, interplay of wind and solar, ramping requirements for thermal power plants, storage requirements or optimal configurations of 100\% renewable power sectors and their respective transition pathways.
 
 \subsection{Extensive input data requirements}
-in particular generation capacities and time series of load and RES (wie zufällig sind das die OPSD-Datenpakete) 
+The optimisation or simulations performed with these power plant models heavily depend on various input data. Since most investigations start from the conditions of the power sector today, generation capacities as well as time series of load, prices as well as wind and solar power generation are particularly relevant. Additional data requirements also include inter-connector capacities, fuel prices, hydro reservoir inflows, district heating demand or system service requirements or potentials for renewable sources. However, the intersection of data required for all power sector models are existing capacities as well as load time series and renewable power feed-in.
 
 \subsection{Availability of data}
-A lot of data is available - but dispersed, poorly documented and ill-formatted 
+A lot of data is available - but dispersed, poorly documented and ill-formatted
 
-% Additional notes for problems of input data:
-% The problem of input data
-%     \begin{itemize}
-%         \item availability of open data
-%         \item amount of data and sources - mix of many different sources required, difficult to find with e.g. google
-%         \item manual download of different files and merging of different file-formats, formatting
-%         \item reproducible preprocessing
-%         \item flexible preprocessing with the possibility to update along with the original data
-%         \item clearing up, verification/validation of input data ( inconsistencies, errors, gaps in data)
-%         \item visualisation?
-%         \item unclarity of legal issues
-%     \end{itemize}
-    
+Although energy data availability has grown over the last years, data search, processing and validation still constitutes a significant share of the work load of power system modelling. This is due to
+\begin{itemize}
+    \item the required combination of several different sources
+    \item difficult discoverability
+    \item manual download of different files
+    \item merging of different file-formats and formatting
+    \item lack of a standardised nomenclature and classification of energy technologies and sources
+    \item poorly documented original data, e.g. lack of meta data
+    \item quality of input data which require a verification process (e.g inconsistencies, obvious errors, gaps in data)
+\end{itemize}
+
+Additionally, many of they openly available data is subject to unclear or restrictive terms of use. Actually, confusion around copyright is one of the main challenges for data sharing \url{https://figshare.com/articles/Whitepaper_Practical_challenges_for_researchers_in_data_sharing/5975011}
+
+Concluding, data processing, maintenance and verification is a major obstacle and work load for power system modellers. Since it is performed by different teams in parallel isolation, efficiency could significantly improve if done in collaboration. Also the quality of the processed data could significantly improve by knowledge sharing of the large amount of power system data users. The project \textit{Open Power System Data (OPSD)} aims at harvesting the efficiency and quality gain for the power modelling community by collecting, checking, processing, aggregating, documenting and publishing data required for power modelling on an online platform. 
+
+The concept and methods of \textit{Open Power System Data} is described in section \re
+{sec:OPSD}, while section \ref{sec:packages} explains the approach and content of the resulting five data packages. Finally, we reflect on the current usage of the data packages as well as possible extensions \ref{sec:discussion}.    f
 \section{OPSD: frictionless data for modelling (Ingmar)}
+\label{OPSD}
 \subsection{General idea}
 gather "official" data in one place, foramt it nicely, quality checks / improvements; concept of data packages 
 
@@ -120,30 +126,82 @@ Frictionless data (OKF), evtl.in 2.3 mit reinziehen)
 \subsection{Some (careful) data modifications}
 wenn möglich und sinnvoll, hier high-level Beschreibung des Korrekturen in den einzelnen Datenpaketen Approach of OPSD / Verification/Validation - trade-off with changing the original input data too much: Concept of error marking IT-concept: 
 
-\section{Results: Five data packages}
-\subsection{Overview (?)}
-3.1 - 3.5 jeweils kurze Beschreibung der packages (Vertextung unserer Folien vom Abschlussworkshop), idealerweise mit einer Beispiel-Tabelle oder noch besser Visualisierung; ggf auch mit geographischer Coverage stand heute (oder Stand Ende OPSD), so wie auf dem Workshop 
+\section{Results: Five data packages (vertextung folien abschlussworkshop...)}
+\label{sec:packages}
+\subsection{Overview}
+Currently five main data packages are available, which cover a large share of the input data required for power system modelling. These are:
+\begin{itemize}
+    \item Conventional power plants
+    \item National generation capacity
+    \item Renewable power plants
+    \item Time series
+    \item Weather data
+\end{itemize}
+
+Due to different original data availability as well as processing effort, the geographical coverage differs. The covered countries in the different data packages are shown in blue in the data availability matrix (Figure \ref{fig:overview}). Further specifications on the start year of availability (time series) and type of power plants covered are indicated in the matrix cells.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/data_availability_overview.PNG}
+    \caption{Overview of the current data availability}
+    \label{fig:overview}
+\end{figure}
+
+Figure \ref{fig:energy_structure} displays the energy source structure we apply consistently to the first three packages.
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/energy_source_tree.PNG}
+    \caption{Classification}
+    \label{fig:energy_structure}
+\end{figure}
+
 \subsection{Conventional power plants (Wolf)}
+\paragraph{Content and Scope}
+\paragraph{Geographic coverage}
+\paragraph{Value added}
+
 \subsection{National generation capacity (Wolf)}
+\paragraph{Content and Scope}
+\paragraph{Geographic coverage}
+\paragraph{Value added}
+
 \subsection{Renewable power plants (Frauke)}
+\paragraph{Content and Scope}
+The renewable power plant data package covers existing solar, wind, bio, hydro and geothermal power plants as well as historic time series the installed renewable capacities.
+
+\paragraph{Geographic coverage} The current geographic 
+
+\paragraph{Value added}
+
+%  	This Data Package contains a list of renewable energy power plants in lists of renewable energy-based power plants of Germany, Denmark, France and Poland. Germany: More than 1.7 million renewable power plant entries, eligible under the renewable support scheme (EEG). Denmark: Wind and phovoltaic power plants with a high level of detail. France: Aggregated capacity and number of installations per energy source per municipality (Commune). Poland: Summed capacity and number of installations per energy source per municipality (Powiat). Switzerland: Renewable power plants eligible under the Swiss feed in tariff KEV (Kostendeckende Einspeisevergütung) Due to different data availability, the power plant lists are of different accurancy and partly provide different power plant parameter. Due to that, the lists are provided as seperate csv-files per country and as separate sheets in the excel file. Suspect data or entries with high probability of duplication are marked in the column 'comment'. Theses validation markers are explained in the file validation marker.csv. Filtering all entries with comments out results in the recommended data set. Additionally, the Data Package includes a daily time series of cumulated installed capacity per energy source type for Germany. All data processing is conducted in Python and pandas and has been documented in the Jupyter Notebooks linked below. 
+
 \subsection{Time series (Jonathan)}
-The time series data package contains highly granular (30/15/60 minutes) time series data for 35 European countries, including the following variables:
+
+\paragraph{Content and Scope}
+The time series data package contains highly granular time series data, including the following variables:
 \begin{itemize}
     \item Power consumption (load)
     \item Power generation by varaiable renewables (wind and solar) and share of production capacity 
     \item Day-ahead power prices
 \end{itemize}
-Data are extracted from a number of sources, including national TSO's websites, ENTSO-E's "Monthly statistics data collection" as well as ENTSO-E Transparency.
-Power system modelling usually requires time series data to be complete for for the time period under consideration. Many data sources however 
+
+\paragraph{Geographic coverage}
+Overall, 35 countries are covered. coverage varies between variables, however and improves with time. While load data is published for all European countries, availability of renewable generation data varies between countries. While historic records of day-ahead prices could be purchased from power exchanges, they are freely available only since 2015, when the ENTSO-E Transparency Platform was introduced.
+
+\paragraph{Value added}
+While from 2015 onwards, many of the data are available from the ENTSO-E Transparency Platform, earlier records have to be obtained through individual national sources. Data are extracted mostly from national TSO's websites, ENTSO-E's "Monthly statistics data collection" as well as ENTSO-E Transparency. Data formats vary greatly depending on the source: Some TSOs allow downloading one file containing all available data (Amprion), while others require downloading and combining monthly (TenneT) or even daily files (PSE). Depending on the national market set-up, data have a resolution of either 15 (i.e. Austria, Germany and some neighbours), 30 (i.e. the British Isles) or 60 minutes (all other countries). The time series data package combines all data with the same temporal resolution in one file each, greatly fascilitating it's use for modellers. Additionally, 15 and 30 minute data are aggregated to 60 minutes in order to provide one file with maximal geographic coverage.
+
+Power system modelling usually requires time series data to be complete for the period under consideration. Many time series however are missing data for periods ranging from a few hours to many months. Individual data are commonly missing during the daylight-savings time fall back in October. Within the time series data package, data gaps up to 2 hours are filled by applying linear interpolation. In these cases, tables are annotated with a marker, allowing users to trace back where interpolation has been applied. Longer periods of missing data are left as-is.
 
 
 \subsection{Weather data (Frauke)}
         
 \section{Discussion and Outlook (Lion)}
+\label{sec:discussion}
 \begin{itemize}
     \item Wolf: hier insbesondere auf laufende Erweiterungen etc. eingehen, möglicherweise auch auf Zielgruppen etc. 
     \item Statistics on how the data is applied, how many users etc., maybe categorize the applications
-    \item MaybesShow verification/validation results of bottom-up power plant data with national statistics
+    \item MaybesShow verification/validation results of bottom-up power plant data with national statisticsja
     \item The approach of OPSD is reproducible, flexible, possible to update and widely apply
     \item quality of the data, room for improvement: what specific?
     \item maintenance work is required
