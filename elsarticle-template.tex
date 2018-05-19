@@ -1,7 +1,8 @@
 \documentclass[article]{elsarticle}
 
+
+%\usepackage[T1]{fontenc}
 \usepackage{lineno,hyperref}
-\usepackage[T1]{fontenc}
 \modulolinenumbers[5]
 
 \journal{Journal of \LaTeX\ Templates}
@@ -169,19 +170,16 @@ Figure \ref{fig:energy_structure} displays the energy source structure we apply 
 
 \subsection{Renewable power plants (Frauke/Wolf-FL?)}
 \paragraph{Content and Scope}
-The renewable power plant data package contains a list of existing solar, wind, bio, run-of-river and geothermal power plants. The Since original sources of conventional and overlap with respect to technology and covered Additionally, it  as well as historic time series the installed renewable capacities.
+The renewable power plant data package contains a list of existing solar, wind, bio, run-of-river and geothermal power plants. Due to different data and parameter availability in the countries, one list is provided per country. These are of different accuracy and partly include different parameters. However, all state energy source and technology, electrical capacity (MW) and data source. If available in the data, the respective system operators (transmission and distribution), support scheme ID or technology-specific parameters like hub height for wind turbines are included. While a high amount of parameters and units (more than 1.8 million power plant entries) are available for Germany, these only cover plants eligible under the renewable support scheme (EEG). Also for Switzerland just the supported plants are provided (Swiss feed in tariff KEV) since these are well documented and information is openly provided. For Denmark, detailed data on solar and wind power plants including rotor diameter etc. is provided, but no other technologies. Aggregated capacity per energy source and municipality is stated in the lists for Poland and France.
 
-Due to different data and parameter availability in the countries, one list is provided per country. These are of different accurancy and partly include different parameters. However, all state energy source and technology, electrical capacity (MW) and data source.
+Most original data source either provide conventional or renewable power plants. However, especially with respect to hydro power, information overlaps and is difficult to correlate. With the objective to provide data packages that can be directly applied by the modellers, we tried to eliminate the overlap by clarifying which energy sources and which technologies are covered by the conventional and renewable data package as illustrated in \ref{fig:energy_structure}.
 
-Since the location of renewable power plants is decisive for resulting feed-in of wind and solar, the geographic location is provided for Germany, Denmark and with respect to weather data important for grid and 
+An additional output of this data package are the historic daily time series of the installed renewable capacities per energy source type for Germany. These are applied in the time series script: Since solar and wind feed-in time series are derived from real feed-in data, the absolute feed-in is rising during the year due to increasing installed capacity. For deriving the relative, normalised feed-in, the corresponding installed capacity is required.
 
-fig:energy_structure
-
-\paragraph{Geographic coverage} Currently lists of German, Danish, Swiss, Polish and French renewable power plants are provided. Due to different data and parameter availability in the countries,  while the latter two  are 
+\paragraph{Geographic coverage} Currently lists of German, Danish, Swiss, Polish and French renewable power plants are provided. Since the location of renewable power plants is decisive for resulting feed-in of wind and solar, the geographic location is provided where information was available. This is the case for Germany, Denmark and France. These coordinates are of different accuracy since they are partly derived from zip-codes or districts.
 
 \paragraph{Value added}
-
-%  	This Data Package contains a list of renewable energy power plants in lists of renewable energy-based power plants of Germany, Denmark, France and Poland. Germany: More than 1.7 million renewable power plant entries, eligible under the renewable support scheme (EEG). Denmark: Wind and phovoltaic power plants with a high level of detail. France: Aggregated capacity and number of installations per energy source per municipality (Commune). Poland: Summed capacity and number of installations per energy source per municipality (Powiat). Switzerland: Renewable power plants eligible under the Swiss feed in tariff KEV (Kostendeckende Einspeisevergütung) Due to different data availability, the power plant lists are of different accurancy and partly provide different power plant parameter. Due to that, the lists are provided as seperate csv-files per country and as separate sheets in the excel file. Suspect data or entries with high probability of duplication are marked in the column 'comment'. Theses validation markers are explained in the file validation marker.csv. Filtering all entries with comments out results in the recommended data set. Additionally, the Data Package includes a daily time series of cumulated installed capacity per energy source type for Germany. All data processing is conducted in Python and pandas and has been documented in the Jupyter Notebooks linked below. 
+The amount of renewable energy units exceed by far the conventional ones due to smaller unit size, which makes processing tedious and manual verification unit by unit verification impossible. Furthermore, naming conventions and classification of renewable energy technologies and sources differ significantly between countries. The added value of the script is thus bringing it to the same energy source structure as well as to the same formatting. Although some parameters differ between the country scripts, the country lists can be consistently combined for the cut set of essential parameters and directly applied for power system models. Furthermore, inconsistent data is marked and can thus easily be filtered out.
 
 \subsection{Time series (Jonathan)}
 \label{subsec:time series}
@@ -190,7 +188,7 @@ fig:energy_structure
 The time series data package contains highly granular time series data, including the following variables:
 \begin{itemize}
     \item Power consumption (load)
-    \item Power generation by varaiable renewables (wind and solar) and share of production capacity 
+    \item Power generation by variable renewables (wind and solar) and share of production capacity 
     \item Day-ahead power prices
 \end{itemize}
 
