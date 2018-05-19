@@ -81,6 +81,7 @@
 \section*{NOTES}
 \begin{itemize}
     \item Irgendwo noch Legal Status, zumindest kurz erwaehnen: Legal Context: MIT for the scripts, but licensing the data itselfs is facing some problems, explain the lawyer assessments and communication with the original data owners
+    \item Geographical Coverage: Für alle 5 data packages die Karte aus der Präsentation vom Abschlussworkshop integrieren, ja Unterpunkt oder in der Übersicht??
 \end{itemize}
 
 \section{Introduction (Frauke)}
@@ -176,6 +177,7 @@ The renewable power plant data package covers existing solar, wind, bio, hydro a
 %  	This Data Package contains a list of renewable energy power plants in lists of renewable energy-based power plants of Germany, Denmark, France and Poland. Germany: More than 1.7 million renewable power plant entries, eligible under the renewable support scheme (EEG). Denmark: Wind and phovoltaic power plants with a high level of detail. France: Aggregated capacity and number of installations per energy source per municipality (Commune). Poland: Summed capacity and number of installations per energy source per municipality (Powiat). Switzerland: Renewable power plants eligible under the Swiss feed in tariff KEV (Kostendeckende Einspeisevergütung) Due to different data availability, the power plant lists are of different accurancy and partly provide different power plant parameter. Due to that, the lists are provided as seperate csv-files per country and as separate sheets in the excel file. Suspect data or entries with high probability of duplication are marked in the column 'comment'. Theses validation markers are explained in the file validation marker.csv. Filtering all entries with comments out results in the recommended data set. Additionally, the Data Package includes a daily time series of cumulated installed capacity per energy source type for Germany. All data processing is conducted in Python and pandas and has been documented in the Jupyter Notebooks linked below. 
 
 \subsection{Time series (Jonathan)}
+\label{subsec:time series}
 
 \paragraph{Content and Scope}
 The time series data package contains highly granular time series data, including the following variables:
@@ -193,8 +195,31 @@ While from 2015 onwards, many of the data are available from the ENTSO-E Transpa
 
 Power system modelling usually requires time series data to be complete for the period under consideration. Many time series however are missing data for periods ranging from a few hours to many months. Individual data are commonly missing during the daylight-savings time fall back in October. Within the time series data package, data gaps up to 2 hours are filled by applying linear interpolation. In these cases, tables are annotated with a marker, allowing users to trace back where interpolation has been applied. Longer periods of missing data are left as-is.
 
-
 \subsection{Weather data (Frauke)}
+
+\paragraph{Content and Scope}
+The weather data package provides a script to automatically download and process wind, solar and temperature data based on the MERRA-2 dataset (TODO REFERENZ) made available by NASA (illustration: Figure \ref{fig:weather data}). It differs significantly to the other data packages as no one click-download of the already processed data is available on the platform. Due to the size of the data which can reach GB and TB if a high amount of variables, a long timespan and a huge geographical area is chosen, the strategy here is to provide a documented methodological script and a data sample for the year 2016 for Germany. The user is thus enabled to receive a chosen set of parameters of a specified area and time span, by running the script on the own computer. Resulting data can be formatted either in csv or sql-format. Parameters covered are
+\begin{itemize}
+ \item wind velocity in 2, 10 and 50 meters height and roughness length
+ \item solar radiation
+ \item temperature
+ \item air density and pressure
+\end{itemize}
+
+Since the total top-of the-atmosphere horizontal and the ground radiation in the original data is not what a energy modeller requires to calculate the resulting energy yield of a solar power plant, the script provides methods to transform these to direct/indirect radiation.
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/weather_data.png}
+    \caption{Content and scope of the weather data script}
+    \label{fig:weather data}
+\end{figure}
+
+\paragraph{Geographic coverage}
+The reanalysis data has worldwide coverage in a resolution of 0.625 x 0.5. By specifying two coordinates in the script, a rectangular area can be chosen.
+
+\paragraph{Value added}
+Weather parameter for modelling are crucial due to the rising influence of wind and solar feed-in for the power system. The OPSD weather data script fills a gap between original meteorological data (e.g. MERRA-2) and ready-made feed-in time series. On the one hand direct usage of original datasets require knowlegde which one to choose of the hundreds of meteorological parameters and how to receive wind speed and solar radiation relevant for power-modelling. Additionally, the NetCDF-file format preferred by meteorologist due to its mutlidimensional option, is not directly compatible with data formats preferred by power system modellers and requires thus tedious processing. On the other hand, feed-in time series as provided in the data package described in \ref{subsec:time series} are less flexible for the automatic integration to own modelling code and restricted to the assumptions made for the calculation of the resulting electricity feed-in like e.g hub height of wind turbines. Thus, for power modellers who have the ambition of own feed-in calculations and require a long timespan of historic weather data, this script lowers the barrier of utilizing the wealth of available reanalysis weather data.
         
 \section{Discussion and Outlook (Lion)}
 \label{sec:discussion}
