@@ -166,11 +166,17 @@ Figure \ref{fig:energy_structure} displays the energy source structure we apply 
 \paragraph{Geographic coverage}
 \paragraph{Value added}
 
-\subsection{Renewable power plants (Frauke)}
+\subsection{Renewable power plants (Frauke/Wolf-FL?)}
 \paragraph{Content and Scope}
-The renewable power plant data package covers existing solar, wind, bio, hydro and geothermal power plants as well as historic time series the installed renewable capacities.
+The renewable power plant data package contains a list of existing solar, wind, bio, run-of-river and geothermal power plants. The Since original sources of conventional and overlap with respect to technology and covered Additionally, it  as well as historic time series the installed renewable capacities.
 
-\paragraph{Geographic coverage} The current geographic 
+Due to different data and parameter availability in the countries, one list is provided per country. These are of different accurancy and partly include different parameters. However, all state energy source and technology, electrical capacity (MW) and data source.
+
+Since the location of renewable power plants is decisive for resulting feed-in of wind and solar, the geographic location is provided for Germany, Denmark and with respect to weather data important for grid and 
+
+fig:energy_structure
+
+\paragraph{Geographic coverage} Currently lists of German, Danish, Swiss, Polish and French renewable power plants are provided. Due to different data and parameter availability in the countries,  while the latter two  are 
 
 \paragraph{Value added}
 
@@ -195,7 +201,7 @@ While from 2015 onwards, many of the data are available from the ENTSO-E Transpa
 
 Power system modelling usually requires time series data to be complete for the period under consideration. Many time series however are missing data for periods ranging from a few hours to many months. Individual data are commonly missing during the daylight-savings time fall back in October. Within the time series data package, data gaps up to 2 hours are filled by applying linear interpolation. In these cases, tables are annotated with a marker, allowing users to trace back where interpolation has been applied. Longer periods of missing data are left as-is.
 
-\subsection{Weather data (Frauke)}
+\subsection{Weather data (Frauke/Martin?)}
 
 \paragraph{Content and Scope}
 The weather data package provides a script to automatically download and process wind, solar and temperature data based on the MERRA-2 dataset (TODO REFERENZ) made available by NASA (illustration: Figure \ref{fig:weather data}). It differs significantly to the other data packages as no one click-download of the already processed data is available on the platform. Due to the size of the data which can reach GB and TB if a high amount of variables, a long timespan and a huge geographical area is chosen, the strategy here is to provide a documented methodological script and a data sample for the year 2016 for Germany. The user is thus enabled to receive a chosen set of parameters of a specified area and time span, by running the script on the own computer. Resulting data can be formatted either in csv or sql-format. Parameters covered are
